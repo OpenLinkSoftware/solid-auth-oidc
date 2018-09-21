@@ -17,7 +17,7 @@ chai.should()
 const expect = chai.expect
 
 const SolidAuthOIDC = require('../src/index')
-const PoPToken = require('@trust/oidc-rp/lib/PoPToken')
+const PoPToken = require('@solid/oidc-rp/lib/PoPToken')
 
 describe('SolidAuthOIDC', () => {
   var auth
@@ -318,12 +318,12 @@ describe('SolidAuthOIDC', () => {
     it('should validate the auth response', () => {
       let aliceWebId = 'https://alice.example.com/'
       let authResponse = {
-        params: {
+        authorization: {
           id_token: 'sample.id.token',
           access_token: 'sample.access.token'
         },
-        decoded: {
-          payload: { sub: aliceWebId }
+        idClaims: {
+          sub: aliceWebId
         }
       }
       let validateResponseStub = sinon.stub().resolves(authResponse)
